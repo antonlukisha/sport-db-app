@@ -1,0 +1,4 @@
+fastapi~=0.115.5
+pydantic~=2.10.2
+mysql~=9.0.1
+mysql-connector-python~=9.0.0

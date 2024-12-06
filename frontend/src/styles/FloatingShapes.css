@@ -1,0 +1,89 @@
+.splash-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.floating-shadow {
+  position: absolute;
+  bottom: 5%;
+  width: 40%;
+  opacity: 0.3;
+  animation: float-shadow 5s ease-in-out infinite;
+}
+
+.floating-shape {
+  position: absolute;
+  width: 25%;
+  animation: float 4s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.floating-box {
+  top: 5%;
+  left: 0;
+  animation-delay: 0.5s;
+}
+
+.floating-table {
+  top: 2%;
+  right: 45%;
+  width: 30%;
+  animation-delay: 1s;
+}
+
+.floating-balls {
+  bottom: 25%;
+  left: 2%;
+  width: 9%;
+  animation-delay: 1.5s;
+}
+
+.floating-ball {
+  top: 26%;
+  right: 50%;
+  width: 30%;
+  animation-delay: 2s;
+}
+
+.floating-football {
+  bottom: 25%;
+  right: 30%;
+  animation-delay: 2.5s;
+}
+
+.floating-balling {
+  top: 50%;
+  left: 5%;
+  width: 20%;
+  animation-delay: 3s;
+}
+
+.floating-golf {
+  bottom: 5%;
+  left: 42%;
+  width: 15%;
+  animation-delay: 3.5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-shadow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}

@@ -1,0 +1,717 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Exo+2:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/**************************************
+ *             Navigation             *
+ **************************************/
+.nav {
+  font-family: "Manrope", sans-serif;
+  width: 260px;
+  height: 532px;
+  background-color: #fff;
+  padding: 16px 32px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.nav .logo {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3399FF;
+  display: flex;
+  align-items: center;
+}
+
+.general-label {
+  color: #6c757d;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.general-nav {
+  margin: 0;
+  font-size: 18px;
+  font-weight: normal;
+  color: #212529;
+  margin-bottom: 20px;
+}
+
+/*********************************
+ *             Chart             *
+ *********************************/
+.chart {
+  padding: 16px 32px;
+  flex: 1;
+  min-width: 350px;
+  margin: 10px;
+}
+
+canvas {
+  width: 100%;
+}
+
+/**************************************
+ *             Components             *
+ **************************************/
+/*========== 1. Dividers ==========*/
+.divider {
+  width: 100%;
+  height: 1.5px;
+  background-color: #ced4da;
+  margin: 10px 0;
+}
+
+.black-part {
+  color: #212529;
+}
+
+/*========== 2. Sections ==========*/
+* {
+  overflow: hidden;
+}
+
+.dashboard {
+  background-color: #f8f9fa;
+  padding: 22px 72px;
+  padding-bottom: 10%;
+  display: flex;
+}
+
+.main {
+  padding: 5px;
+  margin: 0 42px;
+  margin-right: 0;
+  width: 100%;
+  contain: content;
+}
+
+.main-container {
+  display: flex;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.splash-container {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.art-container {
+  flex: 1;
+  width: 100%;
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8%;
+}
+
+.box {
+  display: flex;
+  width: 33%;
+  gap: 12px;
+}
+
+section {
+  font-family: "Manrope", sans-serif;
+  background-color: #fff;
+  padding: 16px 24px;
+  gap: 12px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.frame {
+  padding: 18px 22px;
+}
+
+/*========== 3. Headers ==========*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  font-family: "Manrope", sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: #212529;
+}
+
+h3 {
+  margin: 0;
+  color: #6c757d;
+
+}
+
+.main-header {
+  font-family: "Manrope", sans-serif;
+  display: flex;
+  flex-direction: column;
+  font-size: 54px;
+  line-height: 60px;
+  font-weight: 900;
+  color: #212529;
+}
+
+.main-span {
+  font-size: 20px;
+  font-weight: 100;
+  color: #6c757d;
+}
+
+/*========== 4. Links ==========*/
+
+a {
+  text-decoration: none;
+}
+
+/*========== 5. Text ==========*/
+
+.main-text {
+  font-family: "Manrope", sans-serif;
+  text-align: justify;
+  font-size: 13px;
+  font-weight: 400;
+  color: #212529;
+}
+
+.main-text-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  padding: 100px 60px;
+}
+
+/****************************************
+ *             Shoping List             *
+ ****************************************/
+.shop-list {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/*********************************
+ *             Image             *
+ *********************************/
+
+ /*========== 1. Floating image ==========*/
+.floating-shape {
+  position: absolute;
+  animation: float 4s ease-in-out infinite;
+}
+
+.floating-apple {
+  bottom: 5%;
+  left: 5%;
+  height: 20%;
+  animation-duration: 5.5s;
+}
+
+.floating-fridge {
+  left: 13%;
+  top: 25%;
+  height: 60%;
+  animation-duration: 8.3s;
+}
+
+.floating-notification {
+  top: 18%;
+  left: 28%;
+  height: 25%;
+  animation-duration: 7s;
+}
+
+.floating-sparkles {
+  bottom: 2%;
+  left: 0;
+  height: 95%;
+  animation-duration: 8s;
+}
+
+.floating-note {
+  top: 5%;
+  left: 0;
+  height: 40%;
+  animation-duration: 7.5s;
+}
+
+.floating-chupa-chups {
+  top: 5%;
+  left: 42%;
+  height: 20%;
+  animation-duration: 9s;
+}
+
+.floating-hamburger {
+  bottom: 10%;
+  left: 41%;
+  height: 30%;
+  animation-duration: 7.5s;
+}
+
+.floating-shadow {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  height: 7%;
+  opacity: 0.3;
+  animation-duration: 5s;
+  animation: shadow 4s ease-in-out infinite;
+}
+
+@keyframes shadow {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(0.90, 0.90);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/*********************************
+ *             Grid             *
+ *********************************/
+.grid-four-four {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+/*********************************
+ *             Table             *
+ *********************************/
+ul {
+  overflow: hidden;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  border-radius: 4px;
+}
+
+li a {
+  padding: 10px 15px;
+  color: #343a40;
+  display: flex;
+  align-items: center;
+}
+
+li a svg {
+  margin-right: 10px;
+}
+
+li:hover {
+  background-color: #CCE5FF;
+}
+
+li:hover a {
+  color: #3399FF;
+}
+
+.filter-field {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tab-group {
+  display: flex;
+}
+
+.tab-item {
+  font-weight: bold;
+  padding: 8px 16px;
+  border-bottom-color: #212529;
+  border-bottom: 4px solid;
+  cursor: pointer;
+}
+
+.tab-item.active {
+  font-weight: bold;
+  padding: 8px 16px;
+  color: #3399FF;
+  border-bottom-color: #3399FF;
+  border-bottom: 4px solid;
+}
+
+.tab-item:hover {
+  color: #3399FF;
+  border-bottom-color: #3399FF;
+}
+
+thead {
+  background-color: #CCE5FF;
+  border-radius: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: none;
+}
+
+th:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+th:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.document-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.document-table th, .document-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+/*********************************
+ *             Input            *
+ *********************************/
+/*========== 1. Search Bar ==========*/
+.search-bar {
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  font-family: "Manrope", sans-serif;
+  color: #6c757d;
+  padding: 6px 12px;
+  border: 2px solid #ced4da;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  box-sizing: border-box;
+}
+
+/*========== 2. Search Field ==========*/
+.search-field {
+  display: flex;
+  position: relative;
+  font-size: 12px;
+}
+
+/*========== 3. Form Input ==========*/
+.form-input {
+  font-size: 16px;
+}
+
+/********************************
+ *             Note             *
+ ********************************/
+/*========== 1. Container ==========*/
+.note-container {
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/*========== 2. Textarea ==========*/
+.note-textarea {
+  background-color: #CCE5FF;
+  width: 300px;
+  padding: 12px;
+  font-size: 16px;
+  font-family: 'Manrope', sans-serif;
+  border: none;
+  border-radius: 5px;
+  resize: none;
+  overflow: hidden;
+}
+
+.note-textarea:focus {
+  outline: none;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/**********************************
+ *             Button             *
+ **********************************/
+/*========== 1. Dark Input Button ==========*/
+.dark-input-button {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  background-color: #3399FF;
+  color: #f8f9fa;
+  padding: 6px 12px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.dark-input-button:hover {
+  background-color: #CCE5FF;
+  color: #3399FF;
+}
+
+/*========== 2. Dark Button ==========*/
+.dark-button {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  background-color: #3399FF;
+  color: #f8f9fa;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.dark-button:hover {
+  background-color: #CCE5FF;
+  color: #3399FF;
+}
+
+.dark-button-auth {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  color: #212529;
+  font-size: 26px;
+  background-color: #FFF;
+  padding: 8px 16px;
+  border: none;
+  border-bottom-color: #212529;
+  border-bottom: 4px solid;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.dark-button-auth.active {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  color: #3399FF;
+  background-color: #fff;
+  font-size: 26px;
+  padding: 8px 16px;
+  border: none;
+  border-bottom-color: #3399FF;
+  border-bottom: 4px solid;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+/*========== 3. Light Button ==========*/
+.light-button {
+  font-family: "Manrope", sans-serif;
+  color: #3399FF;
+  background-color: #f8f9fa;
+  font-weight: bold;
+  padding: 6px 12px;
+  border: 2px solid #3399FF;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.light-button:hover {
+  background-color: #3399FF;
+  color: #f8f9fa;
+}
+
+/*========== 4. Sets Of Buttons ==========*/
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+/*********************************
+ *            Markers            *
+ *********************************/
+/*========== 1. Status ==========*/
+.status {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.status.active {
+  background-color: #e6ffe6;
+  color: #00a500;
+}
+
+.status.expired {
+  background-color: #ffe6e6;
+  color: #e60000;
+}
+
+.status.missing {
+  background-color: #fffacd;
+  color: #b58900;
+
+}
+
+/*========== 2. Type ==========*/
+.type {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.type.info {
+  background-color: #e6ffe6;
+  color: #00a500;
+}
+
+.type.error {
+  background-color: #ffe6e6;
+  color: #e60000;
+}
+
+.type.warning {
+  background-color: #fffacd;
+  color: #b58900;
+
+}
+
+/*========== 3. Message ==========*/
+.warn-message {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: #e60000;
+}
+
+.ok-message {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: #00a500;
+}
+
+/************************************
+ *            Pagination            *
+ ************************************/
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.page-numbers a {
+  margin: 0 5px;
+  color: #6c757d;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: normal;
+}
+
+.page-numbers a.active {
+  font-weight: bold;
+  color: #3399FF;
+}
+
+.page-numbers a:hover {
+  background-color: #CCE5FF;
+}
+
+/************************************
+ *             Dropdown             *
+ ************************************/
+.dropdown {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  margin: 0 8px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3399FF;
+  color: #f8f9fa;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dropdown:focus {
+  outline: none;
+}
+
+.dropdown option {
+  appearance: none;
+  cursor: default;
+  font-weight: bold;
+  background-color: #CCE5FF;
+  color: #3399FF;
+  border-radius: 0;
+  border: none;
+}
+
+.dropdown:last-child {
+  border-radius: 5px;
+}
+
+/***********************************
+ *             Entries             *
+ ***********************************/
+.entries {
+  font-weight: bold;
+  font-family: "Manrope", sans-serif;
+}
+
+/***************************************
+ *             Role Toggle             *
+ ***************************************/
+.role-switcher {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.toggle-role-button {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  background-color: #3399FF;
+  color: #f8f9fa;
+  border: none;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.toggle-role-button:hover {
+  background-color: #CCE5FF;
+  color: #3399FF;
+}
