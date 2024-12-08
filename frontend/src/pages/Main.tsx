@@ -28,11 +28,13 @@ const Main: React.FC = () => {
     try {
       const response = await testService.uploadTestData();
       setTestResponse('Успешно загруженные тестовые данные');
-      await sleep(2000);
+      await sleep(1000);
       setTestResponse('');
     } catch (error) {
       console.error('Failed to fetch test data:', error);
       setError('Не удалось загрузить тестовые данные');
+      await sleep(1000);
+      setError('');
     } finally {
       setLoading(false);
     }
@@ -64,8 +66,8 @@ const Main: React.FC = () => {
           >
             {loading ? 'Загрузка...' : 'Загрузить тестовые данные'}
           </button>}
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          {testResponse && <p style={{ color: 'green', padding: '0', margin: '0' }}>{testResponse}</p>}
+          {testResponse && <p style={{ color: 'green', fontWeight: 'bold', fontSize: '12px' }}>{testResponse}</p>}
+          {error && <p style={{ color: 'red', fontWeight: 'bold', fontSize: '12px' }}>{error}</p>}
         </div>
         <div className="art-container">
           <FloatingShapes />

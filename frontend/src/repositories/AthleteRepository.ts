@@ -36,7 +36,9 @@ class AthleteRepository {
   async createAthlete(athlete: AthleteWithoutIdDTO): Promise<string> {
     for (let i = 0; i < this.retries; i++) {
       try {
-        const response: AxiosResponse<MessageResponse> = await api.post('/athletes');
+        console.log(athlete);
+
+        const response: AxiosResponse<MessageResponse> = await api.post('/athletes', athlete);
         return response.data.message;
       } catch (error) {
         if (i === this.retries - 1) throw error;
@@ -53,7 +55,9 @@ class AthleteRepository {
   async updateAthlete(athlete: AthleteDTO): Promise<string> {
     for (let i = 0; i < this.retries; i++) {
       try {
-        const response: AxiosResponse<MessageResponse> = await api.put('/athletes');
+        console.log(athlete);
+
+        const response: AxiosResponse<MessageResponse> = await api.put('/athletes', athlete);
         return response.data.message;
       } catch (error) {
         if (i === this.retries - 1) throw error;

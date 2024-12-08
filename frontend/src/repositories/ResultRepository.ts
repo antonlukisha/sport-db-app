@@ -12,9 +12,9 @@ class ResultRepository {
   async addResult(resultDto: ResultDTO): Promise<string> {
     for (let i = 0; i < this.retries; i++) {
       try {
-        const response: AxiosResponse<MessageResponse> = await api.post('/results', {
-          result: resultDto,
-        });
+        console.log(resultDto);
+
+        const response: AxiosResponse<MessageResponse> = await api.post('/results', resultDto);
         return response.data.message;
       } catch (error) {
         if (i === this.retries - 1) throw error;
@@ -38,7 +38,7 @@ class ResultRepository {
   async getAverageResult(season: string): Promise<any> {
     for (let i = 0; i < this.retries; i++) {
       try {
-        const response: AxiosResponse<any> = await api.get('/results/average-results', { params: { season } });
+        const response: AxiosResponse<any> = await api.get(`/results/average-results?season=${season}`);
         return response.data;
       } catch (error) {
         if (i === this.retries - 1) throw error;

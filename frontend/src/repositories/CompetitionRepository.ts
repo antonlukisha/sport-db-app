@@ -1,9 +1,13 @@
 import api from '../api/Api';
-import { CompetitionDTO, CompetitionWithoutIdDTO } from '../models/dto/CompetitionDTO';
+import { CompetitionDTO, CompetitionWithoutIdDTO, CompetitionSportDTO } from '../models/dto/CompetitionDTO';
 import axios, { AxiosResponse } from 'axios';
 
 interface CompetitionsResponse {
   competitions: CompetitionDTO[];
+}
+
+interface CompetitionsSportResponse {
+  competitions: CompetitionSportDTO[];
 }
 
 interface MessageResponse {
@@ -16,10 +20,10 @@ class CompetitionRepository {
    * Get all competitions.
    * @returns Promise<CompetitionDTO[]>.
    */
-  async getCompetitions(): Promise<CompetitionDTO[]> {
+  async getCompetitions(): Promise<CompetitionSportDTO[]> {
     for (let i = 0; i < this.retries; i++) {
       try {
-        const response: AxiosResponse<CompetitionsResponse> = await api.get('/competitions/all');
+        const response: AxiosResponse<CompetitionsSportResponse> = await api.get('/competitions/all');
         return response.data.competitions;
       } catch (error) {
         if (i === this.retries - 1) throw error;
@@ -36,7 +40,7 @@ class CompetitionRepository {
   async createCompetition(competition: CompetitionWithoutIdDTO): Promise<string> {
     for (let i = 0; i < this.retries; i++) {
       try {
-        const response: AxiosResponse<MessageResponse> = await api.post('/competitions');
+        const response: AxiosResponse<MessageResponse> = await api.post('/competitions', competition);
         return response.data.message;
       } catch (error) {
         if (i === this.retries - 1) throw error;
@@ -53,7 +57,7 @@ class CompetitionRepository {
   async updateCompetition(competition: CompetitionDTO): Promise<string> {
     for (let i = 0; i < this.retries; i++) {
       try {
-        const response: AxiosResponse<MessageResponse> = await api.put('/competitions');
+        const response: AxiosResponse<MessageResponse> = await api.put('/competitions', competition);
         return response.data.message;
       } catch (error) {
         if (i === this.retries - 1) throw error;

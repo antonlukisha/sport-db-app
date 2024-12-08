@@ -18,9 +18,14 @@ class Competition(BaseModel):
     competition_id: int
     competition_name: str
     season: str
-    sports: str
+    sports: List[str]
 
 class CompetitionWithoutId(BaseModel):
+    competition_name: str
+    season: str
+    sports: List[str]
+
+class CompetitionString(BaseModel):
     competition_name: str
     season: str
     sports: str
@@ -28,7 +33,7 @@ class CompetitionWithoutId(BaseModel):
 class Result(BaseModel):
     athlete_id: int
     competition_id: int
-    result: int
+    result: float
 
 class Sport(BaseModel):
     sport_id: int

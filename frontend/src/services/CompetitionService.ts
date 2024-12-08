@@ -1,5 +1,5 @@
-import { CompetitionDTO } from '../models/dto/CompetitionDTO';
-import { Competition } from '../models/type/Competition';
+import { CompetitionDTO, CompetitionWithoutIdDTO, CompetitionSportDTO } from '../models/dto/CompetitionDTO';
+import { Competition, CompetitionWithoutId } from '../models/type/Competition';
 import { competitionRepository } from '../repositories/CompetitionRepository';
 import { SportDTO } from '../models/dto/SportDTO';
 import { sportRepository } from '../repositories/SportRepository';
@@ -10,32 +10,27 @@ class CompetitionService {
    * Get competition data.
    */
    async getCompetitions(): Promise<Competition[]> {
-     const competitionDto: CompetitionDTO[] = await competitionRepository.getCompetitions();
+     const competitionDto: CompetitionSportDTO[] = await competitionRepository.getCompetitions();
      const competitions: Competition[] = await Promise.all(
        competitionDto.map(async (competition) => {
-         console.log(competition.sports);
-
          return {
            id: competition.competition_id,
            name: competition.competition_name,
            season: competition.season,
-           sports: competition.sports,
+           sports: competition.sports.split(',').join('&'),
          };
        })
      );
-
      return competitions;
    }
   /**
    * Create a new competition.
    */
-  async createCompetition(competition: Competition): Promise<string> {
-    const sport: SportDTO = await sportRepository.getSportById(competition.id);
-    const competitionDto: CompetitionDTO = {
-      competition_id: competition.id,
+  async createCompetition(competition: CompetitionWithoutId): Promise<string> {
+    const competitionDto: CompetitionWithoutIdDTO = {
       competition_name: competition.name,
       season: competition.season,
-      sports: competition.sports,
+      sports: competition.sports.split('&'),
     };
     return await competitionRepository.createCompetition(competitionDto);
   }
@@ -49,7 +44,7 @@ class CompetitionService {
       competition_id: competition.id,
       competition_name: competition.name,
       season: competition.season,
-      sports: competition.sports,
+      sports: competition.sports.split('&'),
     };
     return await competitionRepository.updateCompetition(competitionDto);
   }

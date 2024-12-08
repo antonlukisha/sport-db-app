@@ -67,10 +67,6 @@ canvas {
 }
 
 /*========== 2. Sections ==========*/
-* {
-  overflow: hidden;
-}
-
 .dashboard {
   background-color: #f8f9fa;
   padding: 22px 72px;

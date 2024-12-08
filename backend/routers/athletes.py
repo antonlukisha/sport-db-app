@@ -12,8 +12,16 @@ def add_athlete(athlete: AthleteWithoutId):
     cursor = connection.cursor()
     try:
         connection.start_transaction()
+        query = """
+                SELECT *
+                FROM sports
+                WHERE sport_name = %s
+            """
+        cursor.execute(query, (athlete.sport,))
+        sport = cursor.fetchone()
+        print(sport)
         query = "INSERT INTO athletes (first_name, last_name, patronymic, sport_id) VALUES (%s, %s, %s, %s)"
-        cursor.execute(query, (athlete.first_name, athlete.last_name, athlete.patronymic, athlete.sport_id))
+        cursor.execute(query, (athlete.first_name, athlete.last_name, athlete.patronymic, sport[0]))
         connection.commit()
         return {"message": "Athlete added successfully"}
     except Exception as exception:
@@ -29,7 +37,7 @@ def update_athlete(athlete: Athlete):
     cursor = connection.cursor()
     try:
         connection.start_transaction()
-        query = "UPDATE athletes SET first_name = %s, last_name = %s, patronymic = %s, sport_id = %s, WHERE athlete_id = %s"
+        query = "UPDATE athletes SET first_name = %s, last_name = %s, patronymic = %s, sport_id = %s WHERE athlete_id = %s"
         cursor.execute(query, (athlete.first_name, athlete.last_name, athlete.patronymic, athlete.sport_id, athlete.athlete_id))
         connection.commit()
         return {"message": "Athlete updated successfully"}

@@ -26,7 +26,7 @@ def add_competition(competition: CompetitionWithoutId):
         cursor.execute(query, (competition_id,))
 
         query = "SELECT sport_id FROM sports WHERE sport_name = %s"
-        for sport in Competition.sports:
+        for sport in competition.sports:
             cursor.execute(query, (sport,))
             sport_id = cursor.fetchone()
 
@@ -52,17 +52,17 @@ def update_competition(competition: Competition):
     cursor = connection.cursor()
     try:
         connection.start_transaction()
-        query = "UPDATE competitions SET competition_name = %s, season = %s, WHERE competition_id = %s"
+        query = "UPDATE competitions SET competition_name = %s, season = %s WHERE competition_id = %s"
         cursor.execute(query, (competition.competition_name, competition.season, competition.competition_id))
         query = "SELECT sport_id FROM sports WHERE sport_name = %s"
-        for sport in Competition.sports:
+        for sport in competition.sports:
             cursor.execute(query, (sport,))
             sport_id = cursor.fetchone()
-
             if sport_id:
                 insert_query = """
                     INSERT INTO competition_sports (competition_id, sport_id)
                     VALUES (%s, %s)
+                    ON DUPLICATE KEY UPDATE competition_id = VALUES(competition_id), sport_id = VALUES(sport_id);
                 """
                 cursor.execute(insert_query, (competition.competition_id, sport_id[0]))
         connection.commit()

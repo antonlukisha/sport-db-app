@@ -10,7 +10,7 @@ class ResultService {
     const resultDto: ResultDTO = {
       athlete_id: result.athleteId,
       competition_id: result.competitionId,
-      result: parseInt(result.result),
+      result: parseFloat(result.result),
     };
     return await resultRepository.addResult(resultDto);
 

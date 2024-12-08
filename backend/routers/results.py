@@ -1,4 +1,6 @@
-from fastapi import APIRouter, HTTPException
+from venv import logger
+
+from fastapi import APIRouter, HTTPException, Query
 from fastapi.encoders import jsonable_encoder
 
 from database import get_db_connection
@@ -6,13 +8,19 @@ from dto import Result
 
 router = APIRouter()
 
+
 @router.post("/")
 def add_result(result: Result):
     connection = get_db_connection()
     cursor = connection.cursor()
     try:
         connection.start_transaction()
-        query = "INSERT INTO results (athlete_id, competition_id, result) VALUES (%s, %s, %s)"
+
+        query = """
+            INSERT INTO results (athlete_id, competition_id, result)
+            VALUES (%s, %s, %s) AS v
+            ON DUPLICATE KEY UPDATE result = v.result;
+        """
         cursor.execute(query, (result.athlete_id, result.competition_id, result.result))
         connection.commit()
         return {"message": "Result added successfully"}
@@ -49,13 +57,13 @@ def get_results():
         connection.close()
 
 @router.get("/average-results")
-def average_results(season: str):
+def average_results(season: str = Query(...)):
     connection = get_db_connection()
     cursor = connection.cursor()
     query = """
         SELECT AVG(r.result)
         FROM results r
-        JOIN competitions c ON r.competition_id = c.id
+        JOIN competitions c ON r.competition_id = c.competition_id
         WHERE c.season = %s
     """
     try:
@@ -100,7 +108,7 @@ def get_winner(competition_id: int):
         FROM results r
         JOIN athletes a ON r.athlete_id = a.athlete_id
         WHERE r.competition_id = %s
-        GROUP BY a.id
+        GROUP BY a.athlete_id
         ORDER BY MAX(r.result) DESC
         LIMIT 1
     """

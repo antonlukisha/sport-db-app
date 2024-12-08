@@ -9,15 +9,19 @@ const Results: React.FC = () => {
   const [result, setResult] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [season, setSeason] = useState<string>('');
-  const [averageResult, setAverageResult] = useState<number | null>(null);
-  const [bestResult, setBestResult] = useState<number | null>(null);
+  const [averageResult, setAverageResult] = useState<string | null>(null);
+  const [bestResult, setBestResult] = useState<string | null>(null);
   const [winner, setWinner] = useState<string | null>(null);
   const { role } = useSession();
 
   const handleSubmit = async () => {
     try {
       const responseMessage = await resultService.addResult({athleteId: athleteId, competitionId: competitionId, result: result});
-      setMessage(responseMessage);
+      if (responseMessage === 'Result added successfully') {
+        setMessage('Результат успешно добавлен');
+      } else {
+        setMessage('Что-то пошло не так');
+      }
     } catch (error) {
       setMessage('Не удалось добавить результат.');
     }
@@ -28,16 +32,16 @@ const Results: React.FC = () => {
       const data = await resultService.fetchWinner(competitionId);
       setWinner(data.winner);
     } catch {
-      setWinner('Ошибка получения данных о победителе.');
+      setWinner('отсутствует');
     }
   };
 
   const handleFetchAverageResult = async () => {
     try {
-      const data = await resultService.fetchAverageResult(season);
+      const data = await resultService.fetchAverageResult(season.charAt(0).toUpperCase() + season.slice(1));
       setAverageResult(data.average_result);
     } catch {
-      setAverageResult(null);
+      setAverageResult('отсутствует');
     }
   };
 
@@ -46,7 +50,7 @@ const Results: React.FC = () => {
       const data = await resultService.fetchBestResult(athleteId);
       setBestResult(data.best_result);
     } catch {
-      setBestResult(null);
+      setBestResult('отсутствует');
     }
   };
 
@@ -78,7 +82,7 @@ const Results: React.FC = () => {
               Добавить
             </button>
           </div>
-          {message && <p>{message}</p>}
+          {message && <p style={{ fontWeight: 'bold', fontSize: '12px' }}>{message}</p>}
         </section>
       )}
       <div className="" style={{ gap: '20px', display: 'flex', padding: '5px 50px'}}>
@@ -94,7 +98,7 @@ const Results: React.FC = () => {
               Найти
             </button>
           </div>
-          {winner && <p>Победитель: {winner}</p>}
+          {winner && <p style={{ fontWeight: 'bold', fontSize: '12px' }}>Победитель: {winner}</p>}
         </section>
 
         <section>
@@ -124,7 +128,7 @@ const Results: React.FC = () => {
               Найти
             </button>
           </div>
-          {bestResult !== null && <p>Лучший результат: {bestResult}</p>}
+          {bestResult && <p style={{ fontWeight: 'bold', fontSize: '12px' }}>Лучший результат: {bestResult}</p>}
         </section>
       </div>
     </div>
