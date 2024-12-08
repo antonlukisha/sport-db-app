@@ -4,7 +4,7 @@ from database import get_db_connection
 router = APIRouter()
 
 @router.post("/")
-def upload_sport():
+def upload_db():
     connection = get_db_connection()
     cursor = connection.cursor()
     try:
@@ -97,6 +97,31 @@ def upload_sport():
     except Exception as exception:
         connection.rollback()
         raise HTTPException(status_code=201, detail=f"Error uploading data: {str(exception)}")
+    finally:
+        cursor.close()
+        connection.close()
+
+@router.delete("/")
+def delete_db():
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    try:
+        connection.start_transaction()
+        cursor.execute("SET FOREIGN_KEY_CHECKS = 0;")
+
+        cursor.execute("TRUNCATE TABLE sports;")
+        cursor.execute("TRUNCATE TABLE competitions;")
+        cursor.execute("TRUNCATE TABLE competition_sports;")
+        cursor.execute("TRUNCATE TABLE athletes;")
+        cursor.execute("TRUNCATE TABLE results;")
+
+        cursor.execute("SET FOREIGN_KEY_CHECKS = 1;")
+
+        connection.commit()
+        return {"message": "DB data deleted successfully"}
+    except Exception as exception:
+        connection.rollback()
+        raise HTTPException(status_code=201, detail=f"Error deleted data: {str(exception)}")
     finally:
         cursor.close()
         connection.close()

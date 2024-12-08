@@ -40,6 +40,24 @@ const Main: React.FC = () => {
     }
   };
 
+  const handleDeleteData = async (): Promise<void> => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await testService.deleteData();
+      setTestResponse('Успешная очистка данных');
+      await sleep(1000);
+      setTestResponse('');
+    } catch (error) {
+      console.error('Failed to delete data:', error);
+      setError('Не удалось очистить данные');
+      await sleep(1000);
+      setError('');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="main">
       <section className="main-container">
@@ -65,6 +83,13 @@ const Main: React.FC = () => {
             disabled={loading}
           >
             {loading ? 'Загрузка...' : 'Загрузить тестовые данные'}
+          </button>}
+          {role == 'admin' && <button
+            className="light-button"
+            onClick={handleDeleteData}
+            disabled={loading}
+          >
+            {loading ? 'Очистка...' : 'Очистить данные'}
           </button>}
           {testResponse && <p style={{ color: 'green', fontWeight: 'bold', fontSize: '12px' }}>{testResponse}</p>}
           {error && <p style={{ color: 'red', fontWeight: 'bold', fontSize: '12px' }}>{error}</p>}

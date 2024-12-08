@@ -22,6 +22,21 @@ class TestRepository {
     }
     throw new Error('Unexpected error occurred');
   }
+  /**
+   * Delete data.
+   * @returns Promise<string>.
+   */
+  async deleteData(): Promise<string> {
+    for (let i = 0; i < this.retries; i++) {
+      try {
+        const response: AxiosResponse<MessageResponse> = await api.delete('/test');
+        return response.data.message;
+      } catch (error) {
+        if (i === this.retries - 1) throw error;
+      }
+    }
+    throw new Error('Unexpected error occurred');
+  }
 }
 
 export const testRepository = new TestRepository();
